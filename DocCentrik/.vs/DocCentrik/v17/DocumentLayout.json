@@ -1,0 +1,147 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|c:\\users\\ravikant\\source\\repos\\doccentrik\\doccentrik\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|solutionrelative:doccentrik\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|c:\\users\\ravikant\\source\\repos\\doccentrik\\doccentrik\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|solutionrelative:doccentrik\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|c:\\users\\ravikant\\source\\repos\\doccentrik\\doccentrik\\config\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|solutionrelative:doccentrik\\config\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|c:\\users\\ravikant\\source\\repos\\doccentrik\\doccentrik\\utils\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|solutionrelative:doccentrik\\utils\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|c:\\users\\ravikant\\source\\repos\\doccentrik\\doccentrik\\services\\fileprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|solutionrelative:doccentrik\\services\\fileprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|c:\\users\\ravikant\\source\\repos\\doccentrik\\doccentrik\\doccentrik.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|solutionrelative:doccentrik\\doccentrik.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|c:\\users\\ravikant\\source\\repos\\doccentrik\\doccentrik\\services\\sftpuploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{60074782-9438-4CEA-B274-36D20FE6183E}|DocCentrik\\DocCentrik.csproj|solutionrelative:doccentrik\\services\\sftpuploader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "config.json",
+              "DocumentMoniker": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\config.json",
+              "RelativeDocumentMoniker": "DocCentrik\\config.json",
+              "ToolTip": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\config.json",
+              "RelativeToolTip": "DocCentrik\\config.json",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAuwOMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-09T17:45:48.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Utils\\Logger.cs",
+              "RelativeDocumentMoniker": "DocCentrik\\Utils\\Logger.cs",
+              "ToolTip": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Utils\\Logger.cs",
+              "RelativeToolTip": "DocCentrik\\Utils\\Logger.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAgwFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:33:57.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SftpUploader.cs",
+              "DocumentMoniker": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Services\\SftpUploader.cs",
+              "RelativeDocumentMoniker": "DocCentrik\\Services\\SftpUploader.cs",
+              "ToolTip": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Services\\SftpUploader.cs",
+              "RelativeToolTip": "DocCentrik\\Services\\SftpUploader.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAgwDMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:33:25.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FileProcessor.cs",
+              "DocumentMoniker": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Services\\FileProcessor.cs",
+              "RelativeDocumentMoniker": "DocCentrik\\Services\\FileProcessor.cs",
+              "ToolTip": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Services\\FileProcessor.cs",
+              "RelativeToolTip": "DocCentrik\\Services\\FileProcessor.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAgwGUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:32:49.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Config.cs",
+              "DocumentMoniker": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Config\\Config.cs",
+              "RelativeDocumentMoniker": "DocCentrik\\Config\\Config.cs",
+              "ToolTip": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Config\\Config.cs",
+              "RelativeToolTip": "DocCentrik\\Config\\Config.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:32:13.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DocCentrik.csproj",
+              "DocumentMoniker": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\DocCentrik.csproj",
+              "RelativeDocumentMoniker": "DocCentrik\\DocCentrik.csproj",
+              "ToolTip": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\DocCentrik.csproj",
+              "RelativeToolTip": "DocCentrik\\DocCentrik.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-09T17:30:22.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Program.cs",
+              "RelativeDocumentMoniker": "DocCentrik\\Program.cs",
+              "ToolTip": "C:\\Users\\Ravikant\\source\\repos\\DocCentrik\\DocCentrik\\Program.cs",
+              "RelativeToolTip": "DocCentrik\\Program.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAlwBoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:29:45.229Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
