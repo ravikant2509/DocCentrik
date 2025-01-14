@@ -17,6 +17,8 @@ DocCentrik is a cutting-edge solution for document discovery, compliance, and ce
 
 🧠 OCR Integration: Extract text from scanned images and documents using Tesseract.
 
+📑 PDF Extraction: Extract text content from PDF files using PDFSharpCore.
+
 📂 Project Structure
 
 DocCentrik/
@@ -40,6 +42,8 @@ DocCentrik/
 ├── Services/              # Core services
 
 │   ├── FileProcessor.cs   # Handles file scanning and content extraction
+
+│   └── PDFProcessor.cs    # Handles PDF File scanning
 
 │   └── SftpUploader.cs    # Manages secure file uploads via SFTP
 
@@ -95,7 +99,15 @@ cd DocCentrik
 
 Ensure the .NET SDK and required NuGet packages are installed:
 
+dotnet add package ClosedXML --version 0.104.2
 
+dotnet add package DocumentFormat.OpenXml --version 3.2.0
+
+dotnet add package PdfSharpCore --version 1.3.65
+
+dotnet add package SSH.NET --version 2024.2.0
+
+dotnet add package Tesseract --version 5.2.0
 
 dotnet restore
 

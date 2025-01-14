@@ -69,10 +69,6 @@
             "Tesseract": {
               "target": "Package",
               "version": "[5.2.0, )"
-            },
-            "itext7": {
-              "target": "Package",
-              "version": "[9.0.0, )"
             }
           },
           "imports": [

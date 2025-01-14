@@ -6,6 +6,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml.Packaging;
 using Tesseract;
+using PdfSharpCore.Pdf;
+using PdfSharpCore.Pdf.Content;
+using PdfSharpCore.Pdf.Content.Objects;
+using PdfSharpCore.Pdf.IO;
 
 namespace DocCentrik.Services
 {
@@ -28,9 +32,6 @@ namespace DocCentrik.Services
         /// <summary>
         /// Scans the specified directory for files with supported extensions.
         /// </summary>
-        /// <param name="folderPath">The directory to scan.</param>
-        /// <param name="extensions">Array of supported file extensions.</param>
-        /// <returns>A collection of file paths matching the supported extensions.</returns>
         public IEnumerable<string> ScanFiles(string folderPath, string[] extensions)
         {
             return Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories)
@@ -38,54 +39,8 @@ namespace DocCentrik.Services
         }
 
         /// <summary>
-        /// Searches the content for matches based on keywords, regex patterns, or both, depending on the configuration.
-        /// </summary>
-        /// <param name="content">The content to search.</param>
-        /// <param name="regexPatterns">List of regex patterns and their descriptions.</param>
-        /// <param name="keywords">List of keywords to search for.</param>
-        /// <param name="searchMode">The mode of search: "keywords", "regex", or "both".</param>
-        /// <returns>A list of matches found in the content.</returns>
-        public List<(string Match, string Source)> SearchContent(
-            string content,
-            List<(string pattern, string description)> regexPatterns,
-            List<string> keywords,
-            string searchMode)
-        {
-            var matches = new List<(string Match, string Source)>();
-
-            if (searchMode.Equals("keywords", StringComparison.OrdinalIgnoreCase) || searchMode.Equals("both", StringComparison.OrdinalIgnoreCase))
-            {
-                foreach (var keyword in keywords)
-                {
-                    if (content.Contains(keyword, StringComparison.OrdinalIgnoreCase))
-                    {
-                        matches.Add((keyword, "Keyword"));
-                    }
-                }
-            }
-
-            if (searchMode.Equals("regex", StringComparison.OrdinalIgnoreCase) || searchMode.Equals("both", StringComparison.OrdinalIgnoreCase))
-            {
-                foreach (var (pattern, description) in regexPatterns)
-                {
-                    var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                    var matchCollection = regex.Matches(content);
-
-                    foreach (Match match in matchCollection)
-                    {
-                        matches.Add((match.Value, $"Regex ({description})"));
-                    }
-                }
-            }
-
-            return matches;
-        }
-
-        /// <summary>
         /// Extracts content from a supported file type.
         /// </summary>
-        /// <param name="filePath">The file path of the document to process.</param>
-        /// <returns>The extracted content as a string, or an empty string if extraction fails.</returns>
         public string ExtractContent(string filePath)
         {
             try
@@ -97,7 +52,7 @@ namespace DocCentrik.Services
 
                 if (filePath.EndsWith(".pdf"))
                 {
-                    return ExtractFromPdf(filePath);
+                    return ExtractFromPdf(filePath); // Updated method
                 }
 
                 if (filePath.EndsWith(".docx") || filePath.EndsWith(".doc"))
@@ -129,25 +84,20 @@ namespace DocCentrik.Services
             }
         }
 
-
         /// <summary>
-        /// Extracts text content from a PDF file.
+        /// Extracts text content from a PDF file using PDFSharpCore.
         /// </summary>
         private string ExtractFromPdf(string filePath)
         {
             try
             {
-                using var pdfReader = new iText.Kernel.Pdf.PdfReader(filePath);
-                using var pdfDocument = new iText.Kernel.Pdf.PdfDocument(pdfReader);
-
+                using var document = PdfReader.Open(filePath, PdfDocumentOpenMode.ReadOnly);
                 var text = new StringBuilder();
-                var strategy = new iText.Kernel.Pdf.Canvas.Parser.Listener.SimpleTextExtractionStrategy();
 
-                for (int page = 1; page <= pdfDocument.GetNumberOfPages(); page++)
+                foreach (var page in document.Pages)
                 {
-                    var pdfPage = pdfDocument.GetPage(page);
-                    var content = iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor.GetTextFromPage(pdfPage, strategy);
-                    text.Append(content);
+                    var content = ContentReader.ReadContent(page);
+                    ExtractTextFromContent(content, text);
                 }
 
                 return text.ToString();
@@ -156,6 +106,31 @@ namespace DocCentrik.Services
             {
                 Console.WriteLine($"Error extracting text from PDF: {ex.Message}");
                 return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Recursively extracts text from PDF content objects.
+        /// </summary>
+        private void ExtractTextFromContent(CObject content, StringBuilder textBuilder)
+        {
+            if (content is COperator cOperator && cOperator.Operands != null)
+            {
+                foreach (var operand in cOperator.Operands)
+                {
+                    ExtractTextFromContent(operand, textBuilder);
+                }
+            }
+            else if (content is CSequence cSequence)
+            {
+                foreach (var element in cSequence)
+                {
+                    ExtractTextFromContent(element, textBuilder);
+                }
+            }
+            else if (content is CString cString)
+            {
+                textBuilder.Append(cString.Value);
             }
         }
 
@@ -214,6 +189,25 @@ namespace DocCentrik.Services
         }
 
         /// <summary>
+        /// Extracts text content from PowerPoint files (.ppt and .pptx).
+        /// </summary>
+        private string ExtractFromPowerPoint(string filePath)
+        {
+            try
+            {
+                using var presentation = PresentationDocument.Open(filePath, false);
+                var slides = presentation.PresentationPart.SlideParts;
+                var text = string.Join("\n", slides.SelectMany(slide => slide.Slide.Descendants<DocumentFormat.OpenXml.Drawing.Text>().Select(t => t.Text)));
+                return text;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error extracting content from PowerPoint file {filePath}: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Extracts text content from an image using OCR.
         /// </summary>
         private string ExtractFromImage(string filePath)
@@ -232,35 +226,53 @@ namespace DocCentrik.Services
                 return string.Empty;
             }
         }
-        /// <summary>
-        /// Extracts text content from PowerPoint files (.ppt and .pptx).
-        /// </summary>
-        /// <param name="filePath">The PowerPoint file path.</param>
-        /// <returns>The extracted text content.</returns>
-        private string ExtractFromPowerPoint(string filePath)
-        {
-            try
-            {
-                using var presentation = PresentationDocument.Open(filePath, false);
-                var slides = presentation.PresentationPart.SlideParts;
-                var text = string.Join("\n", slides.SelectMany(slide => slide.Slide.Descendants<DocumentFormat.OpenXml.Drawing.Text>().Select(t => t.Text)));
-                return text;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error extracting content from PowerPoint file {filePath}: {ex.Message}");
-                return string.Empty;
-            }
-        }
+
         /// <summary>
         /// Determines whether the specified file is an image based on its extension.
         /// </summary>
-        /// <param name="filePath">The file path to check.</param>
-        /// <returns>True if the file is an image, otherwise false.</returns>
         public bool IsImage(string filePath)
         {
             var imageExtensions = new[] { ".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif" };
             return imageExtensions.Any(ext => filePath.EndsWith(ext, StringComparison.OrdinalIgnoreCase));
+        }
+
+        /// <summary>
+        /// Searches the content for matches based on keywords, regex patterns, or both.
+        /// </summary>
+        public List<(string Match, string Source)> SearchContent(
+            string content,
+            List<(string pattern, string description)> regexPatterns,
+            List<string> keywords,
+            string searchMode)
+        {
+            var matches = new List<(string Match, string Source)>();
+
+            if (searchMode.Equals("keywords", StringComparison.OrdinalIgnoreCase) || searchMode.Equals("both", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var keyword in keywords)
+                {
+                    if (content.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    {
+                        matches.Add((keyword, "Keyword"));
+                    }
+                }
+            }
+
+            if (searchMode.Equals("regex", StringComparison.OrdinalIgnoreCase) || searchMode.Equals("both", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var (pattern, description) in regexPatterns)
+                {
+                    var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+                    var matchCollection = regex.Matches(content);
+
+                    foreach (Match match in matchCollection)
+                    {
+                        matches.Add((match.Value, $"Regex ({description})"));
+                    }
+                }
+            }
+
+            return matches;
         }
     }
 }
